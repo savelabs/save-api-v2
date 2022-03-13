@@ -1,0 +1,9 @@
+throttle:
+  ttl: 60
+  limit: 10
+
+refresh_token:
+  expiration_time: 3600
+
+jwt:
+  expiration: "20s"
