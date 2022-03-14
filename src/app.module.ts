@@ -10,6 +10,7 @@ import { AuthModule } from "./auth/auth.module"
 import { TokensModule } from "./tokens/tokens.module"
 import { JSONScalar, JWTScalar, UUIDScalar } from "./scalars"
 import { SuapModule } from "./suap/suap.module"
+import { TicketsModule } from "./tickets/tickets.module"
 
 @Module({
   imports: [
@@ -50,7 +51,8 @@ import { SuapModule } from "./suap/suap.module"
     UsersModule,
     AuthModule,
     TokensModule,
-    SuapModule
+    SuapModule,
+    TicketsModule
   ],
   providers: [JWTScalar, UUIDScalar, JSONScalar]
 })
