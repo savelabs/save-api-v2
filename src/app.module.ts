@@ -11,6 +11,8 @@ import { TokensModule } from "./tokens/tokens.module"
 import { JSONScalar, JWTScalar, UUIDScalar } from "./scalars"
 import { SuapModule } from "./suap/suap.module"
 import { TicketsModule } from "./tickets/tickets.module"
+import { ServeStaticModule } from "@nestjs/serve-static"
+import { join } from "path"
 
 @Module({
   imports: [
@@ -47,6 +49,10 @@ import { TicketsModule } from "./tickets/tickets.module"
         ttl: config.get("throttle.ttl"),
         limit: config.get("throttle.limit")
       })
+    }),
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, "..", "..", "uploads"),
+      serveRoot: "/static"
     }),
     UsersModule,
     AuthModule,

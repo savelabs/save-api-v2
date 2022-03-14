@@ -12,6 +12,7 @@ datasource db {
 
 model User {
   id             String @id @default(cuid())
-  matriculation   String
+  matriculation  String
+  photoHref      String?
   expoPushTokens String[]
 }
