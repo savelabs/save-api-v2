@@ -4,13 +4,25 @@ import { ReadStream } from "fs"
 import { PrismaService } from "src/prisma.service"
 import { createWriteStream } from "fs"
 import cuid from "cuid"
+import vault from "node-vault"
 
 @Injectable()
 export class UsersService {
-  constructor(private readonly prisma: PrismaService) {}
+  private vault: vault.client
 
-  async create(user: Prisma.UserCreateInput): Promise<User> {
-    const createdUser = await this.prisma.user.create({ data: user })
+  constructor(private readonly prisma: PrismaService) {
+    this.vault = vault({
+      apiVersion: "v2",
+      token: "vault-plaintext-root-token"
+    })
+  }
+
+  async create(
+    user: Prisma.UserCreateInput & { password: string }
+  ): Promise<User> {
+    const createdUser = await this.prisma.user.create({
+      data: { matriculation: user.matriculation }
+    })
 
     return createdUser
   }
@@ -44,6 +56,16 @@ export class UsersService {
   ): Promise<User> {
     return await this.prisma.user.findFirst({
       where: { matriculation }
+    })
+  }
+
+  async getActiveUsers(): Promise<User[]> {
+    return await this.prisma.user.findMany({
+      where: {
+        lastLogin: {
+          gte: new Date(Date.now() - 15 * 24 * 60 * 60 * 1000)
+        }
+      }
     })
   }
 }

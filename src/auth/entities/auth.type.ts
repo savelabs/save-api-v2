@@ -14,8 +14,5 @@ export class AuthType {
   refreshToken: string
 
   @Field()
-  apiToken: string
-
-  @Field()
   cookies: string
 }

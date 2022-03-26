@@ -1,7 +1,7 @@
 import { Module } from "@nestjs/common"
 import { ConfigModule, ConfigService } from "@nestjs/config"
 import { GraphQLModule } from "@nestjs/graphql"
-import { MercuriusDriver, MercuriusDriverConfig } from "@nestjs/mercurius"
+import { ApolloDriver, ApolloDriverConfig } from "@nestjs/apollo"
 import { ThrottlerModule } from "@nestjs/throttler"
 import config from "../config"
 import * as Joi from "joi"
@@ -13,6 +13,9 @@ import { SuapModule } from "./suap/suap.module"
 import { TicketsModule } from "./tickets/tickets.module"
 import { ServeStaticModule } from "@nestjs/serve-static"
 import { join } from "path"
+import { NotificationsModule } from "./notifications/notifications.module"
+import { BullModule } from "@nestjs/bull"
+import { ScheduleModule } from "@nestjs/schedule"
 
 @Module({
   imports: [
@@ -38,8 +41,8 @@ import { join } from "path"
         })
       })
     }),
-    GraphQLModule.forRoot<MercuriusDriverConfig>({
-      driver: MercuriusDriver,
+    GraphQLModule.forRoot<ApolloDriverConfig>({
+      driver: ApolloDriver,
       autoSchemaFile: true
     }),
     ThrottlerModule.forRootAsync({
@@ -54,10 +57,18 @@ import { join } from "path"
       rootPath: join(__dirname, "..", "..", "uploads"),
       serveRoot: "/static"
     }),
+    BullModule.forRoot({
+      redis: {
+        host: "localhost",
+        port: 6379
+      }
+    }),
+    ScheduleModule.forRoot(),
     UsersModule,
     AuthModule,
     TokensModule,
     SuapModule,
+    // NotificationsModule,
     TicketsModule
   ],
   providers: [JWTScalar, UUIDScalar, JSONScalar]

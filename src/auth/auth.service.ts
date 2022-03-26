@@ -24,7 +24,7 @@ export class AuthService {
     const user =
       (await this.usersService.getByMatriculation(data.matriculation)) ||
       (await this.usersService.create({
-        matriculation: data.matriculation,
+        ...data,
         expoPushTokens: []
       }))
 
@@ -34,6 +34,6 @@ export class AuthService {
 
     const { api, site } = await cliente.obterCredenciais()
 
-    return { user, token, refreshToken, apiToken: api, cookies: site }
+    return { user, token, refreshToken, cookies: site }
   }
 }

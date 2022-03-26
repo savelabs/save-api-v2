@@ -11,8 +11,12 @@ datasource db {
 }
 
 model User {
-  id             String @id @default(cuid())
-  matriculation  String
-  photoHref      String?
-  expoPushTokens String[]
+  id                String    @id @default(cuid())
+  matriculation     String
+  photoHref         String?
+  lastInfo          Json?
+  showNotifications Boolean   @default(false)
+  expoPushTokens    String[]
+  refreshToken      String?
+  lastLogin         DateTime? @default(now())
 }
