@@ -7,4 +7,7 @@ export class User {
 
   @Field()
   matriculation: string
+
+  @Field()
+  photoHref: string
 }
