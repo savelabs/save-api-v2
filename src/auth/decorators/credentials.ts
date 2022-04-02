@@ -1,13 +1,9 @@
 import { createParamDecorator, ExecutionContext } from "@nestjs/common"
 import { GqlExecutionContext } from "@nestjs/graphql"
 
-export const Credentials = createParamDecorator(
+export const SuapCookies = createParamDecorator(
   (data: unknown, context: ExecutionContext) => {
     const ctx = GqlExecutionContext.create(context)
-    const credentials = {
-      site: ctx.getContext().req.headers["suap-cookies"]
-    }
-
-    return credentials
+    return ctx.getContext().req.headers["suap-cookies"]
   }
 )
