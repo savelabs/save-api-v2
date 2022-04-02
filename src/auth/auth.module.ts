@@ -7,6 +7,7 @@ import { UsersModule } from "src/users/users.module"
 
 @Module({
   imports: [UsersModule, TokensModule],
-  providers: [AuthService, AuthResolver, JwtStrategy]
+  providers: [AuthService, AuthResolver, JwtStrategy],
+  exports: [AuthService]
 })
 export class AuthModule {}

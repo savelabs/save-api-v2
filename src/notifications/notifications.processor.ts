@@ -3,7 +3,7 @@ import { User } from "@prisma/client"
 import { Job } from "bull"
 import { SuapService } from "src/suap/suap.service"
 
-@Processor("notificationsQueue")
+@Processor("notifications")
 export class AudioConsumer {
   constructor(private suapService: SuapService) {}
 

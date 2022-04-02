@@ -4,18 +4,10 @@ import { ReadStream } from "fs"
 import { PrismaService } from "src/prisma.service"
 import { createWriteStream } from "fs"
 import cuid from "cuid"
-import vault from "node-vault"
 
 @Injectable()
 export class UsersService {
-  private vault: vault.client
-
-  constructor(private readonly prisma: PrismaService) {
-    this.vault = vault({
-      apiVersion: "v2",
-      token: "vault-plaintext-root-token"
-    })
-  }
+  constructor(private readonly prisma: PrismaService) {}
 
   async create(
     user: Prisma.UserCreateInput & { password: string }
@@ -49,6 +41,13 @@ export class UsersService {
         .on("finish", () => resolve(true))
         .on("error", () => reject(false))
     )
+  }
+
+  async enableNotifications(id: User["id"]) {
+    await this.prisma.user.update({
+      where: { id },
+      data: { showNotifications: true }
+    })
   }
 
   async getByMatriculation(

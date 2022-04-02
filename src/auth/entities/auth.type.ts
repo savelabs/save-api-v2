@@ -13,6 +13,9 @@ export class AuthType {
   @Field(() => UUIDScalar)
   refreshToken: string
 
+  @Field(() => String)
+  apiToken: string
+
   @Field()
   cookies: string
 }
