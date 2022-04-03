@@ -1,5 +1,5 @@
 import { Injectable } from "@nestjs/common"
-import { ClienteSuap, Credenciais } from "suap-sdk-javascript"
+import { ClienteSuap, Credenciais } from "suap-sdk"
 
 @Injectable()
 export class SuapService {

@@ -10,7 +10,7 @@ import { NotificationsService } from "./notifications.service"
 export class NotificationsResolver {
   constructor(private readonly notificationsService: NotificationsService) {}
 
-  @Mutation(() => VoidScalar)
+  @Mutation(() => VoidScalar, { nullable: true })
   @UseGuards(GqlAuthGuard)
   async enableNotifications(
     @CurrentUser() user: User,

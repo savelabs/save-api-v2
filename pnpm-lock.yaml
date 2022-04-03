@@ -65,7 +65,7 @@ specifiers:
   reflect-metadata: ^0.1.13
   rimraf: ^3.0.2
   rxjs: ^7.5.5
-  suap-sdk-javascript: ^1.3.3
+  suap-sdk: ^1.3.5
   supertest: ^6.2.2
   ts-jest: ^27.1.4
   ts-loader: ^9.2.8
@@ -109,7 +109,7 @@ dependencies:
   reflect-metadata: 0.1.13
   rimraf: 3.0.2
   rxjs: 7.5.5
-  suap-sdk-javascript: 1.3.3
+  suap-sdk: 1.3.5
 
 devDependencies:
   '@commitlint/cli': 16.2.3
@@ -8234,8 +8234,8 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /suap-sdk-javascript/1.3.3:
-    resolution: {integrity: sha512-FzH8WQ/fY5KjCKlvk2rBo2otlCPxakShWYguUEc/vPoCpdrd5PSQFv9NNSxK3wApLA0d15bLR7UGdMs59Qhn7A==}
+  /suap-sdk/1.3.5:
+    resolution: {integrity: sha512-fyK5O9vIYRygTY0qMdXTmX1XSh+ZqSDqphQuJP4fgSdWqP9VjueOTR0KqO1z4aa/m4WBpCJ1eXx8bdz32PV80A==}
     dependencies:
       axios: 0.26.1
       axios-cookiejar-support: 2.0.4_axios@0.26.1+tough-cookie@4.0.0
