@@ -4,7 +4,7 @@ import { Job, Queue } from "bull"
 import { SuapService } from "src/suap/suap.service"
 import { ConfigService } from "@nestjs/config"
 import { Expo, ExpoPushMessage } from "expo-server-sdk"
-import vault from "node-vault"
+import { UsersService } from "src/users/users.service"
 
 @Processor("token")
 export class AudioConsumer {
@@ -14,6 +14,7 @@ export class AudioConsumer {
   constructor(
     private suapService: SuapService,
     private configService: ConfigService,
+    private usersService: UsersService,
     @InjectQueue("notifications") private readonly queue: Queue
   ) {
     this.expo = new Expo({
@@ -22,27 +23,24 @@ export class AudioConsumer {
   }
 
   @Process("token")
-  async revokeToken(job: Job<{ user: User; vaultClient: vault.client }>) {
-    const { user, vaultClient } = job.data
-    const data = await vaultClient.read(`secret/suap/${user.id}`)
+  async revokeToken(job: Job<{ user: User }>) {
+    const { user } = job.data
+    const data = await this.usersService.getCredentials(user.id)
     const newToken = await this.suapService.request(
-      { api: data.apiToken, matricula: user.matriculation },
+      { api: data.suapApiToken, matricula: user.matriculation },
       "renovarToken",
       []
     )
-    await vaultClient.write(`secret/suap/${user.id}`, {
-      ...data,
-      apiToken: newToken
-    })
+    await this.usersService.updateApiToken(user.id, newToken)
   }
 
   @Process("notification")
-  async sendNotifications(job: Job<{ user: User; vaultClient: vault.client }>) {
-    const { user, vaultClient } = job.data
-    const { apiToken } = await vaultClient.read(`secret/suap/${user.id}`)
+  async sendNotifications(job: Job<{ user: User }>) {
+    const { user } = job.data
+    const { suapApiToken } = await this.usersService.getCredentials(user.id)
     await this.suapService.request(
       {
-        api: apiToken,
+        api: suapApiToken,
         matricula: user.matriculation
       },
       "notificar",

@@ -5,14 +5,12 @@ import { UsersService } from "src/users/users.service"
 import { AuthService } from "src/auth/auth.service"
 import { User } from "src/users/entities/user.entity"
 import { InjectQueue } from "@nestjs/bull"
-import { VaultService } from "src/vault.service"
 
 @Injectable()
 export class NotificationsService {
   constructor(
     private readonly authService: AuthService,
     private readonly usersService: UsersService,
-    private readonly vaultService: VaultService,
     @InjectQueue("notifications") private queue: Queue
   ) {}
 
@@ -24,10 +22,8 @@ export class NotificationsService {
       password
     })
 
-    await this.vaultService.client.write(`secret/suap/${user.id}`, {
-      apiToken,
-      password
-    })
+    await this.usersService.updateApiToken(user.id, apiToken)
+    await this.usersService.updatePassword(user.id, password)
   }
 
   @Cron("* 0 */8 * *")
@@ -41,15 +37,13 @@ export class NotificationsService {
       tokensEvents.push({
         name: "token",
         data: {
-          user: user,
-          vaultClient: this.vaultService.client
+          user: user
         }
       })
       if (user.showNotifications) {
         notificationEvents.push({
           name: "notification",
-          user: user,
-          vaultClient: this.vaultService.client
+          user: user
         })
       }
     })

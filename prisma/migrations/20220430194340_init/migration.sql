@@ -8,6 +8,8 @@ CREATE TABLE "User" (
     "expoPushTokens" TEXT[],
     "refreshToken" TEXT,
     "lastLogin" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
+    "suapApiToken" TEXT,
+    "password" TEXT,
 
     CONSTRAINT "User_pkey" PRIMARY KEY ("id")
 );

@@ -21,16 +21,3 @@ services:
       - ./data/redis:/data
     networks:
       - default
-  vault:
-    image: vault
-    ports:
-      - "8200:8200"
-    volumes:
-      - ./data/vault:/data
-    networks:
-      - default
-    environment:
-      VAULT_ADDR: http://127.0.0.1:8200
-      VAULT_DEV_ROOT_TOKEN_ID: "vault-plaintext-root-token"
-    cap_add:
-      - IPC_LOCK

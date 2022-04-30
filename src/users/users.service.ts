@@ -13,10 +13,34 @@ export class UsersService {
     user: Prisma.UserCreateInput & { password: string }
   ): Promise<User> {
     const createdUser = await this.prisma.user.create({
-      data: { matriculation: user.matriculation }
+      data: user
     })
 
     return createdUser
+  }
+
+  async updateApiToken(id: User["id"], token: User["suapApiToken"]) {
+    await this.prisma.user.update({
+      where: { id },
+      data: { suapApiToken: token }
+    })
+  }
+
+  async updatePassword(id: User["id"], password: User["password"]) {
+    await this.prisma.user.update({
+      where: { id },
+      data: { password }
+    })
+  }
+
+  async getCredentials(id: User["id"]): Promise<{
+    password: User["password"]
+    suapApiToken: User["suapApiToken"]
+  }> {
+    return await this.prisma.user.findUnique({
+      where: { id },
+      select: { password: true, suapApiToken: true }
+    })
   }
 
   async getById(id: User["id"]): Promise<User> {

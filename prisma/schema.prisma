@@ -19,4 +19,6 @@ model User {
   expoPushTokens    String[]
   refreshToken      String?
   lastLogin         DateTime? @default(now())
+  suapApiToken      String?
+  password          String?
 }
