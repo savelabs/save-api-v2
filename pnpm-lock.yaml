@@ -63,7 +63,7 @@ specifiers:
   reflect-metadata: ^0.1.13
   rimraf: ^3.0.2
   rxjs: ^7.5.5
-  suap-sdk: ^1.3.5
+  suap-sdk: ^1.4.0
   supertest: ^6.2.2
   ts-jest: ^27.1.4
   ts-loader: ^9.2.8
@@ -105,7 +105,7 @@ dependencies:
   reflect-metadata: 0.1.13
   rimraf: 3.0.2
   rxjs: 7.5.5
-  suap-sdk: 1.3.5
+  suap-sdk: 1.4.0
 
 devDependencies:
   '@commitlint/cli': 16.2.3
@@ -2805,7 +2805,7 @@ packages:
     dependencies:
       axios: 0.26.1
       http-cookie-agent: 1.0.5_tough-cookie@4.0.0
-      tough-cookie: github.com/colincasey/tough-cookie/250380acb40dd9a93b50516f176b5ae62f27a129
+      tough-cookie: 4.0.0
     transitivePeerDependencies:
       - supports-color
     dev: false
@@ -4691,7 +4691,7 @@ packages:
       tough-cookie: ^4.0.0
     dependencies:
       agent-base: 6.0.2
-      tough-cookie: github.com/colincasey/tough-cookie/250380acb40dd9a93b50516f176b5ae62f27a129
+      tough-cookie: 4.0.0
     transitivePeerDependencies:
       - supports-color
     dev: false
@@ -7214,13 +7214,13 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /suap-sdk/1.3.5:
-    resolution: {integrity: sha512-fyK5O9vIYRygTY0qMdXTmX1XSh+ZqSDqphQuJP4fgSdWqP9VjueOTR0KqO1z4aa/m4WBpCJ1eXx8bdz32PV80A==}
+  /suap-sdk/1.4.0:
+    resolution: {integrity: sha512-dKJpb+qDI82bYBviLRwwr7AGyBVrq9O03eN3FLNpMnM2SlIXQqy3vAJPZk9jr+4/FEJoUhli+dGmGG75vzMBOQ==}
     dependencies:
       axios: 0.26.1
       axios-cookiejar-support: 2.0.4_axios@0.26.1+tough-cookie@4.0.0
       cheerio: 1.0.0-rc.10
-      tough-cookie: github.com/colincasey/tough-cookie/250380acb40dd9a93b50516f176b5ae62f27a129
+      tough-cookie: 4.0.0
     transitivePeerDependencies:
       - debug
       - supports-color
@@ -7455,7 +7455,6 @@ packages:
       psl: 1.8.0
       punycode: 2.1.1
       universalify: 0.1.2
-    dev: true
 
   /tr46/0.0.3:
     resolution: {integrity: sha1-gYT9NH2snNwYWZLzpmIuFLnZq2o=}
@@ -8012,14 +8011,3 @@ packages:
   /yocto-queue/0.1.0:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
-
-  github.com/colincasey/tough-cookie/250380acb40dd9a93b50516f176b5ae62f27a129:
-    resolution: {tarball: https://codeload.github.com/colincasey/tough-cookie/tar.gz/250380acb40dd9a93b50516f176b5ae62f27a129}
-    name: tough-cookie
-    version: 4.0.0
-    engines: {node: '>=6'}
-    dependencies:
-      psl: 1.8.0
-      punycode: 2.1.1
-      universalify: 0.1.2
-    dev: false

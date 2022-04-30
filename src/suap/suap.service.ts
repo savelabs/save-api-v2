@@ -8,8 +8,8 @@ export class SuapService {
     requestName: string,
     data: Array<any>
   ) {
-    const cliente = new ClienteSuap({ credenciais })
-    console.log(cliente.matrícula)
+    const cliente = new ClienteSuap()
+    await cliente.loginWithCredentials(credenciais)
     return await cliente[requestName](...data)
   }
 }
