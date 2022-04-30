@@ -9,6 +9,7 @@ export class SuapService {
     data: Array<any>
   ) {
     const cliente = new ClienteSuap({ credenciais })
+    console.log(cliente.matrícula)
     return await cliente[requestName](...data)
   }
 }

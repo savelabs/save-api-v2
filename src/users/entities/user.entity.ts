@@ -8,6 +8,6 @@ export class User {
   @Field()
   matriculation: string
 
-  @Field()
+  @Field({ nullable: true })
   photoHref: string
 }
