@@ -13,7 +13,7 @@ export class AuthType {
   @Field(() => UUIDScalar)
   refreshToken: string
 
-  @Field()
+  @Field(() => String)
   apiToken: string
 
   @Field()

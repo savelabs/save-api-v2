@@ -1,5 +1,14 @@
-import { JWTResolver, UUIDResolver, JSONResolver } from "graphql-scalars"
+import {
+  VoidResolver,
+  JWTResolver,
+  UUIDResolver,
+  JSONResolver
+} from "graphql-scalars"
 import { createFromGraphQLScalar } from "nest-graphql-scalar-adapter"
+
+export const VoidScalar = createFromGraphQLScalar({
+  scalar: VoidResolver
+})
 
 export const JWTScalar = createFromGraphQLScalar({
   scalar: JWTResolver

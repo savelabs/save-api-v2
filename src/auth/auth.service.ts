@@ -3,7 +3,7 @@ import { UsersService } from "../users/users.service"
 import { AuthInput } from "./dto/auth.input"
 import { AuthType } from "./entities/auth.type"
 import { TokensService } from "../tokens/tokens.service"
-import { ClienteSuap } from "suap-sdk-javascript"
+import { ClienteSuap } from "suap-sdk"
 
 @Injectable()
 export class AuthService {
@@ -24,7 +24,7 @@ export class AuthService {
     const user =
       (await this.usersService.getByMatriculation(data.matriculation)) ||
       (await this.usersService.create({
-        matriculation: data.matriculation,
+        ...data,
         expoPushTokens: []
       }))
 
