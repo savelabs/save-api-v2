@@ -9,6 +9,10 @@ import cuid from "cuid"
 export class UsersService {
   constructor(private readonly prisma: PrismaService) {}
 
+  async getUsersCount(): Promise<number> {
+    return await this.prisma.user.count()
+  }
+
   async create(
     user: Prisma.UserCreateInput & { password: string }
   ): Promise<User> {

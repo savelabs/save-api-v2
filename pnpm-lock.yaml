@@ -63,7 +63,7 @@ specifiers:
   reflect-metadata: ^0.1.13
   rimraf: ^3.0.2
   rxjs: ^7.5.5
-  suap-sdk: ^1.4.0
+  suap-sdk: ^1.4.1
   supertest: ^6.2.2
   ts-jest: ^27.1.4
   ts-loader: ^9.2.8
@@ -105,7 +105,7 @@ dependencies:
   reflect-metadata: 0.1.13
   rimraf: 3.0.2
   rxjs: 7.5.5
-  suap-sdk: 1.4.0
+  suap-sdk: 1.4.1
 
 devDependencies:
   '@commitlint/cli': 16.2.3
@@ -2778,7 +2778,6 @@ packages:
 
   /asynckit/0.4.0:
     resolution: {integrity: sha1-x57Zf380y48robyXkLzDZkdLS3k=}
-    dev: true
 
   /atomic-sleep/1.0.0:
     resolution: {integrity: sha512-kNOjDqAh7px0XWNI+4QbzoiR/nTkHAWNud2uvnJquD1/x5a7EQZMJT0AczqK0Qn67oY/TTQ1LbUKajZpp3I9tQ==}
@@ -2796,14 +2795,14 @@ packages:
       - supports-color
     dev: false
 
-  /axios-cookiejar-support/2.0.4_axios@0.26.1+tough-cookie@4.0.0:
+  /axios-cookiejar-support/2.0.4_axios@0.27.2+tough-cookie@4.0.0:
     resolution: {integrity: sha512-N4MwaEp5zCAv+wIp5OFZOPiD2qXCCnx21mMQu7yvO8E9j6YlZWazEHXpz7iJlk6HhZ8vh09ujYJJ594H+iVKmA==}
     engines: {node: '>=12.19.0 <13.0.0 || >=14.5.0'}
     peerDependencies:
       axios: '>=0.20.0'
       tough-cookie: '>=4.0.0'
     dependencies:
-      axios: 0.26.1
+      axios: 0.27.2
       http-cookie-agent: 1.0.5_tough-cookie@4.0.0
       tough-cookie: 4.0.0
     transitivePeerDependencies:
@@ -2814,6 +2813,15 @@ packages:
     resolution: {integrity: sha512-fPwcX4EvnSHuInCMItEhAGnaSEXRBjtzh9fOtsE6E1G6p7vl7edEeZe11QHf18+6+9gR5PbKV/sGKNaD8YaMeA==}
     dependencies:
       follow-redirects: 1.14.9
+    transitivePeerDependencies:
+      - debug
+    dev: false
+
+  /axios/0.27.2:
+    resolution: {integrity: sha512-t+yRIyySRTp/wua5xEr+z1q60QmLq8ABsS5O9Me1AsE5dfKqgnCFzwiCZZ/cGNd1lq4/7akDWMxdhVlucjmnOQ==}
+    dependencies:
+      follow-redirects: 1.14.9
+      form-data: 4.0.0
     transitivePeerDependencies:
       - debug
     dev: false
@@ -3271,7 +3279,6 @@ packages:
     engines: {node: '>= 0.8'}
     dependencies:
       delayed-stream: 1.0.0
-    dev: true
 
   /commander/2.20.3:
     resolution: {integrity: sha512-GpVkmM8vF2vQUkj2LvZmD35JxeJOLCwJ9cUkugyk2nuhbv3+mJvpLYYt+0+USMxE+oj+ey/lJEnhZw75x/OMcQ==}
@@ -3604,7 +3611,6 @@ packages:
   /delayed-stream/1.0.0:
     resolution: {integrity: sha1-3zrhmayt+31ECqrgsp4icrJOxhk=}
     engines: {node: '>=0.4.0'}
-    dev: true
 
   /denque/1.5.1:
     resolution: {integrity: sha512-XwE+iZ4D6ZUB7mfYRMb5wByE8L74HCn30FBN7sWnXksWc1LO1bPDl67pBR9o/kC4z/xSNAwkMYcGgqDV3BE3Hw==}
@@ -4356,7 +4362,6 @@ packages:
       asynckit: 0.4.0
       combined-stream: 1.0.8
       mime-types: 2.1.35
-    dev: true
 
   /formidable/2.0.1:
     resolution: {integrity: sha512-rjTMNbp2BpfQShhFbR3Ruk3qk2y9jKpvMW78nJgx8QKtxjDVrwbZG+wvDOmVbifHyOUOQJXxqEy6r0faRrPzTQ==}
@@ -7214,11 +7219,11 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /suap-sdk/1.4.0:
-    resolution: {integrity: sha512-dKJpb+qDI82bYBviLRwwr7AGyBVrq9O03eN3FLNpMnM2SlIXQqy3vAJPZk9jr+4/FEJoUhli+dGmGG75vzMBOQ==}
+  /suap-sdk/1.4.1:
+    resolution: {integrity: sha512-5DcT00raJE+WRhhR6LQbfz9rt5G/pG7Dj4UP2Kt0uh7szncCE3cIQ9mJYHzo06i0aKddFugdZBA/j8XsaD6NjQ==}
     dependencies:
-      axios: 0.26.1
-      axios-cookiejar-support: 2.0.4_axios@0.26.1+tough-cookie@4.0.0
+      axios: 0.27.2
+      axios-cookiejar-support: 2.0.4_axios@0.27.2+tough-cookie@4.0.0
       cheerio: 1.0.0-rc.10
       tough-cookie: 4.0.0
     transitivePeerDependencies:

@@ -5,6 +5,7 @@ import { UsersService } from "src/users/users.service"
 import { AuthService } from "src/auth/auth.service"
 import { User } from "src/users/entities/user.entity"
 import { InjectQueue } from "@nestjs/bull"
+import Expo from "expo-server-sdk"
 
 @Injectable()
 export class NotificationsService {
@@ -50,5 +51,35 @@ export class NotificationsService {
 
     await this.queue.addBulk(tokensEvents)
     await this.queue.addBulk(notificationEvents)
+  }
+
+  async sendExpoNotifications(title: string, message: string) {
+    const users = await this.usersService.getActiveUsers()
+
+    const tokens = []
+
+    users.forEach((user) => {
+      if (user.showNotifications) {
+        tokens.push(...user.expoPushTokens)
+      }
+    })
+
+    const chunks = Expo.chunkPushNotifications(tokens)
+
+    const messages = []
+
+    chunks.forEach((chunk) => {
+      messages.push({
+        to: chunk,
+        sound: "default",
+        title: title,
+        body: message
+      })
+    })
+
+    await this.queue.add({
+      name: "expoNotification",
+      chunk: messages
+    })
   }
 }
