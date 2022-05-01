@@ -6,14 +6,22 @@ import { AuthService } from "src/auth/auth.service"
 import { User } from "src/users/entities/user.entity"
 import { InjectQueue } from "@nestjs/bull"
 import Expo from "expo-server-sdk"
+import { ConfigService } from "@nestjs/config"
 
 @Injectable()
 export class NotificationsService {
+  private expo: Expo
+
   constructor(
     private readonly authService: AuthService,
     private readonly usersService: UsersService,
+    private readonly configService: ConfigService,
     @InjectQueue("notifications") private queue: Queue
-  ) {}
+  ) {
+    this.expo = new Expo({
+      accessToken: this.configService.get<string>("expo.access_token")
+    })
+  }
 
   async enableNotifications(user: User, password: string) {
     await this.usersService.enableNotifications(user.id)
@@ -64,7 +72,7 @@ export class NotificationsService {
       }
     })
 
-    const chunks = Expo.chunkPushNotifications(tokens)
+    const chunks = this.expo.chunkPushNotifications(tokens)
 
     const messages = []
 

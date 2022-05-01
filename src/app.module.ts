@@ -16,7 +16,6 @@ import { join } from "path"
 import { NotificationsModule } from "./notifications/notifications.module"
 import { BullModule } from "@nestjs/bull"
 import { ScheduleModule } from "@nestjs/schedule"
-import { AdminModule } from './admin/admin.module';
 
 @Module({
   imports: [
@@ -70,8 +69,7 @@ import { AdminModule } from './admin/admin.module';
     TokensModule,
     SuapModule,
     NotificationsModule,
-    TicketsModule,
-    AdminModule
+    TicketsModule
   ],
   providers: [VoidScalar, JWTScalar, UUIDScalar, JSONScalar]
 })
