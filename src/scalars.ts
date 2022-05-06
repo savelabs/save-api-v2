@@ -2,7 +2,8 @@ import {
   VoidResolver,
   JWTResolver,
   UUIDResolver,
-  JSONResolver
+  JSONResolver,
+  DateTimeResolver
 } from "graphql-scalars"
 import { createFromGraphQLScalar } from "nest-graphql-scalar-adapter"
 
@@ -20,4 +21,8 @@ export const UUIDScalar = createFromGraphQLScalar({
 
 export const JSONScalar = createFromGraphQLScalar({
   scalar: JSONResolver
+})
+
+export const DateTimeScalar = createFromGraphQLScalar({
+  scalar: DateTimeResolver
 })

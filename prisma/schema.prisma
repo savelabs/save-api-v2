@@ -10,6 +10,19 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum Role {
+  USER
+  ADMIN
+  DEVELOPER
+}
+
+enum Status {
+  ACTIVE
+  ARCHIVED
+  COMPLETED
+  IN_PROGRESS
+}
+
 model User {
   id                String    @id @default(cuid())
   matriculation     String
@@ -21,4 +34,17 @@ model User {
   lastLogin         DateTime? @default(now())
   suapApiToken      String?
   password          String?
+  tikets            Ticket[]
+  roles             Role[]
+}
+
+model Ticket {
+  id          String   @id
+  title       String
+  body        String
+  userId      String
+  user        User     @relation(fields: [userId], references: [id])
+  status      Status   @default(value: ACTIVE)
+  createdAt   DateTime @default(now())
+  tags        String[]
 }

@@ -8,7 +8,13 @@ import * as Joi from "joi"
 import { UsersModule } from "./users/users.module"
 import { AuthModule } from "./auth/auth.module"
 import { TokensModule } from "./tokens/tokens.module"
-import { JSONScalar, JWTScalar, UUIDScalar, VoidScalar } from "./scalars"
+import {
+  DateTimeScalar,
+  JSONScalar,
+  JWTScalar,
+  UUIDScalar,
+  VoidScalar
+} from "./scalars"
 import { SuapModule } from "./suap/suap.module"
 import { TicketsModule } from "./tickets/tickets.module"
 import { ServeStaticModule } from "@nestjs/serve-static"
@@ -71,6 +77,6 @@ import { ScheduleModule } from "@nestjs/schedule"
     NotificationsModule,
     TicketsModule
   ],
-  providers: [VoidScalar, JWTScalar, UUIDScalar, JSONScalar]
+  providers: [VoidScalar, JWTScalar, UUIDScalar, JSONScalar, DateTimeScalar]
 })
 export class AppModule {}

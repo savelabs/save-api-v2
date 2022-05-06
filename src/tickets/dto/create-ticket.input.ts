@@ -19,5 +19,8 @@ export class CreateTicketInput {
   type: TicketType
 
   @Field()
-  showName: boolean
+  openedBy?: string
+
+  @Field()
+  public: boolean
 }
