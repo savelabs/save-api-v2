@@ -25,7 +25,8 @@ export class AuthService {
       (await this.usersService.getByMatriculation(data.matriculation)) ||
       (await this.usersService.create({
         ...data,
-        expoPushTokens: []
+        expoPushTokens: [],
+        roles: ["USER"]
       }))
 
     const token = await this.tokensService.generateJWTToken(user.id)

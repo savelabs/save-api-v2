@@ -30,6 +30,7 @@ specifiers:
   '@types/js-yaml': ^4.0.5
   '@types/node': ^16.11.26
   '@types/node-summary': ^1.2.0
+  '@types/passport-jwt': ^3.0.6
   '@types/supertest': ^2.0.12
   '@typescript-eslint/eslint-plugin': ^4.33.0
   '@typescript-eslint/parser': ^4.33.0
@@ -125,6 +126,7 @@ devDependencies:
   '@types/js-yaml': 4.0.5
   '@types/node': 16.11.26
   '@types/node-summary': 1.2.0
+  '@types/passport-jwt': 3.0.6
   '@types/supertest': 2.0.12
   '@typescript-eslint/eslint-plugin': 4.33.0_0c49e12669280545a7ea3f36dba6eb0a
   '@typescript-eslint/parser': 4.33.0_eslint@7.32.0+typescript@4.6.3
@@ -2079,7 +2081,6 @@ packages:
     resolution: {integrity: sha512-zm6xBQpFDIDM6o9r6HSgDeIcLy82TKWctCXEPbJJcXb5AKmi5BNNdLXneixK4lplX3PqIVcwLBCGE/kAGnlD4A==}
     dependencies:
       '@types/node': 16.11.26
-    dev: false
 
   /@types/keygrip/1.0.2:
     resolution: {integrity: sha512-GJhpTepz2udxGexqos8wgaBx4I/zWIDPh/KOGEwAqtuGDkOUJu5eFvwmdBX4AmB8Odsr+9pHCQqiAqDL/yKMKw==}
@@ -2137,6 +2138,27 @@ packages:
 
   /@types/parse-json/4.0.0:
     resolution: {integrity: sha512-//oorEZjL6sbPcKUaCdIGlIUeH26mgzimjBB77G6XRgnDl/L5wOnpyBGRe/Mmf5CVW3PwEBE1NjiMZ/ssFh4wA==}
+    dev: true
+
+  /@types/passport-jwt/3.0.6:
+    resolution: {integrity: sha512-cmAAMIRTaEwpqxlrZyiEY9kdibk94gP5KTF8AT1Ra4rWNZYHNMreqhKUEeC5WJtuN5SJZjPQmV+XO2P5PlnvNQ==}
+    dependencies:
+      '@types/express': 4.17.13
+      '@types/jsonwebtoken': 8.5.8
+      '@types/passport-strategy': 0.2.35
+    dev: true
+
+  /@types/passport-strategy/0.2.35:
+    resolution: {integrity: sha512-o5D19Jy2XPFoX2rKApykY15et3Apgax00RRLf0RUotPDUsYrQa7x4howLYr9El2mlUApHmCMv5CZ1IXqKFQ2+g==}
+    dependencies:
+      '@types/express': 4.17.13
+      '@types/passport': 1.0.7
+    dev: true
+
+  /@types/passport/1.0.7:
+    resolution: {integrity: sha512-JtswU8N3kxBYgo+n9of7C97YQBT+AYPP2aBfNGTzABqPAZnK/WOAaKfh3XesUYMZRrXFuoPc2Hv0/G/nQFveHw==}
+    dependencies:
+      '@types/express': 4.17.13
     dev: true
 
   /@types/prettier/2.4.4:

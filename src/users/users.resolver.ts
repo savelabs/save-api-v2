@@ -5,6 +5,8 @@ import { GqlAuthGuard } from "../auth/auth.guard"
 import { CurrentUser } from "../auth/decorators/currentUser"
 import { UsersService } from "./users.service"
 import { VoidScalar } from "src/scalars"
+import { RolesGuard } from "src/auth/guards/roles.guard"
+import { Roles } from "src/auth/decorators/roles"
 
 @Resolver(() => User)
 export class UsersResolver {
@@ -24,5 +26,12 @@ export class UsersResolver {
     @CurrentUser() user: User
   ) {
     await this.usersService.updatePhoto(user.id, file, extension)
+  }
+
+  @Query(() => Number)
+  @UseGuards(GqlAuthGuard, RolesGuard)
+  @Roles("ADMIN")
+  async usersCount(): Promise<number> {
+    return await this.usersService.getUsersCount()
   }
 }
