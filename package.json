@@ -28,6 +28,7 @@
     "@nestjs/core": "^8.4.3",
     "@nestjs/graphql": "^10.0.8",
     "@nestjs/jwt": "^8.0.0",
+    "@nestjs/mapped-types": "*",
     "@nestjs/passport": "^8.2.1",
     "@nestjs/platform-fastify": "^8.4.3",
     "@nestjs/schedule": "^1.1.0",
@@ -54,7 +55,7 @@
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^7.5.5",
-    "suap-sdk": "^1.5.0"
+    "suap-sdk": "^1.6.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^16.2.3",

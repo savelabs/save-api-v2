@@ -12,4 +12,10 @@ export class SuapService {
     await cliente.loginWithCredentials(credenciais)
     return await cliente[requestName](...data)
   }
+
+  async obterDocumento(credenciais: Credenciais, link: string) {
+    return (
+      await this.request(credenciais, "baixarDocumento", [link])
+    ).toString("base64")
+  }
 }

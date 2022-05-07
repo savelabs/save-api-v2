@@ -53,22 +53,17 @@ export class UsersService {
     })
   }
 
-  async updatePhoto(
-    id: User["id"],
-    createReadStream: () => ReadStream,
-    extension: string
-  ): Promise<boolean> {
-    const photo_name = `${cuid()}.${extension}`
+  async updatePhoto(id: User["id"], photo: string, extension: string) {
+    const photoBuffer = Buffer.from(photo, "base64")
+
+    const photoFilename = `${cuid()}.${extension}`
+
+    createWriteStream(`/uploads/${photoFilename}`).write(photoBuffer)
+
     await this.prisma.user.update({
       where: { id },
-      data: { photoHref: `/uploads/${photo_name}` }
+      data: { photoHref: `/uploads/${photoFilename}` }
     })
-    return new Promise(async (resolve, reject) =>
-      createReadStream()
-        .pipe(createWriteStream(`../../../uploads/${photo_name}`))
-        .on("finish", () => resolve(true))
-        .on("error", () => reject(false))
-    )
   }
 
   async enableNotifications(id: User["id"]) {

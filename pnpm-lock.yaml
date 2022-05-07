@@ -11,6 +11,7 @@ specifiers:
   '@nestjs/core': ^8.4.3
   '@nestjs/graphql': ^10.0.8
   '@nestjs/jwt': ^8.0.0
+  '@nestjs/mapped-types': '*'
   '@nestjs/passport': ^8.2.1
   '@nestjs/platform-fastify': ^8.4.3
   '@nestjs/schedule': ^1.1.0
@@ -63,7 +64,7 @@ specifiers:
   reflect-metadata: ^0.1.13
   rimraf: ^3.0.2
   rxjs: ^7.5.5
-  suap-sdk: ^1.5.0
+  suap-sdk: ^1.6.0
   supertest: ^6.2.2
   ts-jest: ^27.1.4
   ts-loader: ^9.2.8
@@ -79,6 +80,7 @@ dependencies:
   '@nestjs/core': 8.4.3_00edab75de3d00160109b98add317aa9
   '@nestjs/graphql': 10.0.8_efb59d09cb6575ff46424e05d14c0357
   '@nestjs/jwt': 8.0.0_@nestjs+common@8.4.3
+  '@nestjs/mapped-types': 1.0.1_7ab401b35f05c13deb013f5cd66f11e3
   '@nestjs/passport': 8.2.1_bdc4c6d4e53181e1a525c1b5bd912ba2
   '@nestjs/platform-fastify': 8.4.3_2da8a9968be4406723e870d9d23c8df0
   '@nestjs/schedule': 1.1.0_e3707db3f627f8174363a48cb9102e98
@@ -105,7 +107,7 @@ dependencies:
   reflect-metadata: 0.1.13
   rimraf: 3.0.2
   rxjs: 7.5.5
-  suap-sdk: 1.5.0
+  suap-sdk: 1.6.0
 
 devDependencies:
   '@commitlint/cli': 16.2.3
@@ -7219,8 +7221,8 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /suap-sdk/1.5.0:
-    resolution: {integrity: sha512-W0X4ky+cykpCNl0LZp2XedPWDubFZ3xDl76/TysrOwCmBtIh9Zx9BXW7fXNKScC0ODMit5hZFwWLoyb3sWqc7Q==}
+  /suap-sdk/1.6.0:
+    resolution: {integrity: sha512-iOfayocOHJmNOZPx9+ctYraMCtahQIT8eKcc/ncZX4BY5+5i83EdPuvgCC6y4oAooPkmCK+/pPutMzhOtYgj0w==}
     dependencies:
       axios: 0.27.2
       axios-cookiejar-support: 2.0.4_axios@0.27.2+tough-cookie@4.0.0

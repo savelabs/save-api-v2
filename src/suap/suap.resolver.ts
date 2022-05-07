@@ -1,5 +1,5 @@
 import { UseGuards } from "@nestjs/common"
-import { Args, Mutation, Resolver } from "@nestjs/graphql"
+import { Args, Query, Mutation, Resolver } from "@nestjs/graphql"
 import { GqlAuthGuard } from "src/auth/auth.guard"
 import { SuapCookies } from "src/auth/decorators/credentials"
 import { CurrentUser } from "src/auth/decorators/currentUser"
@@ -27,6 +27,23 @@ export class SuapResolver {
       },
       data.requestName,
       data.parameters
+    )
+  }
+
+  @Query(() => String)
+  @UseGuards(GqlAuthGuard)
+  async downloadDocument(
+    @CurrentUser() user: User,
+    @Args("link") link: string,
+    @SuapCookies() suapCookies: string
+  ) {
+    return await this.suapService.obterDocumento(
+      {
+        api: "",
+        site: suapCookies,
+        matricula: user.matriculation
+      },
+      link
     )
   }
 }
