@@ -60,7 +60,7 @@ export class TicketsService {
       id = randomUUID()
     }
 
-    return await this.prisma.ticket.create({
+    const ticket = await this.prisma.ticket.create({
       data: {
         id,
         title,
@@ -70,6 +70,8 @@ export class TicketsService {
         tags: labels
       }
     })
+
+    return ticket.id
   }
 
   async deleteTicket(userId: string, id: string) {

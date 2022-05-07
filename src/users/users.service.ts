@@ -1,6 +1,5 @@
 import { Injectable } from "@nestjs/common"
 import { User, Prisma } from "@prisma/client"
-import { ReadStream } from "fs"
 import { PrismaService } from "src/prisma.service"
 import { createWriteStream } from "fs"
 import cuid from "cuid"
