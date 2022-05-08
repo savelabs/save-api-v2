@@ -27,7 +27,7 @@ export class TicketsResolver {
     )
   }
 
-  @Mutation(() => VoidScalar)
+  @Mutation(() => VoidScalar, { nullable: true })
   @UseGuards(GqlAuthGuard)
   async deleteTicket(@CurrentUser() user: User, @Args("id") id: string) {
     await this.ticketsService.deleteTicket(user.id, id)

@@ -18,7 +18,7 @@ export class UsersResolver {
     return user
   }
 
-  @Mutation(() => VoidScalar)
+  @Mutation(() => VoidScalar, { nullable: true })
   @UseGuards(GqlAuthGuard)
   async uploadPhoto(
     @Args("file") file: string,

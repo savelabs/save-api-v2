@@ -17,6 +17,7 @@ CREATE TABLE "User" (
     "suapApiToken" TEXT,
     "password" TEXT,
     "roles" "Role"[],
+    "joined" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "User_pkey" PRIMARY KEY ("id")
 );

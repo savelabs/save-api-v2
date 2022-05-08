@@ -1,7 +1,7 @@
 import { Injectable } from "@nestjs/common"
 import { User, Prisma } from "@prisma/client"
 import { PrismaService } from "src/prisma.service"
-import { createWriteStream } from "fs"
+import { writeFile } from "fs/promises"
 import cuid from "cuid"
 
 @Injectable()
@@ -57,7 +57,7 @@ export class UsersService {
 
     const photoFilename = `${cuid()}.${extension}`
 
-    createWriteStream(`/uploads/${photoFilename}`).write(photoBuffer)
+    await writeFile(`./uploads/${photoFilename}`, photoBuffer)
 
     await this.prisma.user.update({
       where: { id },
@@ -82,6 +82,16 @@ export class UsersService {
 
   async getActiveUsers(): Promise<User[]> {
     return await this.prisma.user.findMany({
+      where: {
+        lastLogin: {
+          gte: new Date(Date.now() - 15 * 24 * 60 * 60 * 1000)
+        }
+      }
+    })
+  }
+
+  async getActiveUsersCount(): Promise<number> {
+    return await this.prisma.user.count({
       where: {
         lastLogin: {
           gte: new Date(Date.now() - 15 * 24 * 60 * 60 * 1000)

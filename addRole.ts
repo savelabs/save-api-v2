@@ -12,6 +12,8 @@ const args = process.argv.slice(2)
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     data: {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
       roles: {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore

@@ -12,7 +12,7 @@ import { NotificationsService } from "./notifications.service"
 export class NotificationsResolver {
   constructor(private readonly notificationsService: NotificationsService) {}
 
-  @Mutation(() => VoidScalar)
+  @Mutation(() => VoidScalar, { nullable: true })
   @UseGuards(GqlAuthGuard)
   async enableNotifications(
     @CurrentUser() user: User,
@@ -21,12 +21,12 @@ export class NotificationsResolver {
     await this.notificationsService.enableNotifications(user, password)
   }
 
-  @Mutation(() => VoidScalar)
+  @Mutation(() => VoidScalar, { nullable: true })
   @UseGuards(GqlAuthGuard, RolesGuard)
   @Roles("ADMIN")
   async sendNotification(
     @Args("title") title: string,
-    @Args("body") body: string,
+    @Args("body") body: string
   ) {
     await this.notificationsService.sendExpoNotifications(title, body)
   }
