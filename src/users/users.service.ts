@@ -59,10 +59,14 @@ export class UsersService {
 
     await writeFile(`./uploads/${photoFilename}`, photoBuffer)
 
+    const path = `/files/photos/${photoFilename}`
+
     await this.prisma.user.update({
       where: { id },
-      data: { photoHref: `/uploads/${photoFilename}` }
+      data: { photoHref: path }
     })
+
+    return path
   }
 
   async enableNotifications(id: User["id"]) {

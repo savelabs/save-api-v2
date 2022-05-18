@@ -18,14 +18,14 @@ export class UsersResolver {
     return user
   }
 
-  @Mutation(() => VoidScalar, { nullable: true })
+  @Mutation(() => String)
   @UseGuards(GqlAuthGuard)
   async uploadPhoto(
     @Args("file") file: string,
     @Args("extension") extension: string,
     @CurrentUser() user: User
   ) {
-    await this.usersService.updatePhoto(user.id, file, extension)
+    return await this.usersService.updatePhoto(user.id, file, extension)
   }
 
   @Query(() => Number)

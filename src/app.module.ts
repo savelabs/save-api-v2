@@ -17,11 +17,10 @@ import {
 } from "./scalars"
 import { SuapModule } from "./suap/suap.module"
 import { TicketsModule } from "./tickets/tickets.module"
-import { ServeStaticModule } from "@nestjs/serve-static"
-import { join } from "path"
 import { NotificationsModule } from "./notifications/notifications.module"
 import { BullModule } from "@nestjs/bull"
 import { ScheduleModule } from "@nestjs/schedule"
+import { FilesModule } from "./files/files.module"
 
 @Module({
   imports: [
@@ -59,10 +58,6 @@ import { ScheduleModule } from "@nestjs/schedule"
         limit: config.get("throttle.limit")
       })
     }),
-    ServeStaticModule.forRoot({
-      rootPath: join(__dirname, "..", "..", "uploads"),
-      serveRoot: "/static"
-    }),
     BullModule.forRoot({
       redis: {
         host: "localhost",
@@ -75,7 +70,8 @@ import { ScheduleModule } from "@nestjs/schedule"
     TokensModule,
     SuapModule,
     NotificationsModule,
-    TicketsModule
+    TicketsModule,
+    FilesModule
   ],
   providers: [VoidScalar, JWTScalar, UUIDScalar, JSONScalar, DateTimeScalar]
 })
