@@ -1,7 +1,7 @@
 import { UseGuards } from "@nestjs/common"
 import { Args, Query, Mutation, Resolver } from "@nestjs/graphql"
 import { User } from "@prisma/client"
-import { GqlAuthGuard } from "src/auth/auth.guard"
+import { GqlAuthGuard } from "src/auth/guards/auth.guard"
 import { CurrentUser } from "src/auth/decorators/currentUser"
 import { VoidScalar } from "src/scalars"
 import { CreateTicketInput } from "./dto/create-ticket.input"

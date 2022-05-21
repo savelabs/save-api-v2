@@ -1,6 +1,6 @@
 import { UseGuards } from "@nestjs/common"
 import { Args, Mutation, Resolver } from "@nestjs/graphql"
-import { GqlAuthGuard } from "src/auth/auth.guard"
+import { GqlAuthGuard } from "src/auth/guards/auth.guard"
 import { CurrentUser } from "src/auth/decorators/currentUser"
 import { Roles } from "src/auth/decorators/roles"
 import { RolesGuard } from "src/auth/guards/roles.guard"

@@ -3,6 +3,7 @@ import { SuapService } from "./suap.service"
 import { SuapResolver } from "./suap.resolver"
 
 @Module({
-  providers: [SuapResolver, SuapService]
+  providers: [SuapResolver, SuapService],
+  exports: [SuapService]
 })
 export class SuapModule {}

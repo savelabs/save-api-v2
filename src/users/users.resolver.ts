@@ -1,7 +1,7 @@
 import { Resolver, Query, Mutation, Args } from "@nestjs/graphql"
 import { User } from "./entities/user.entity"
 import { UseGuards } from "@nestjs/common"
-import { GqlAuthGuard } from "../auth/auth.guard"
+import { GqlAuthGuard } from "../auth/guards/auth.guard"
 import { CurrentUser } from "../auth/decorators/currentUser"
 import { UsersService } from "./users.service"
 import { VoidScalar } from "src/scalars"
