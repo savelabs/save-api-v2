@@ -80,7 +80,7 @@
     "devmoji": "^2.3.0",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.5.0",
-    "eslint-plugin-prettier": "^3.4.1",
+    "eslint-plugin-prettier": "^4.1.0",
     "fastify": "^3.29.0",
     "husky": "^7.0.4",
     "jest": "^27.5.1",
