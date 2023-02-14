@@ -13,6 +13,7 @@ services:
       - ./data/postgres:/var/lib/postgresql/data
     networks:
       - default
+
   redis:
     image: redis
     ports:
