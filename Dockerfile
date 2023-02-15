@@ -21,6 +21,4 @@ FROM base as prod
 
 ENV NODE_ENV production
 
-RUN pnpm run build
-
 CMD ["pnpm", "run", "start:prod"]
