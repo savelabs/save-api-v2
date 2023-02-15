@@ -34,8 +34,7 @@ export class FilesController {
   ) {
     return new StreamableFile(
       await this.filesService.getDocument(
-        // @ts-ignore
-        req.user.matriculation,
+        (req as any).user.matriculation,
         cookies,
         link
       )

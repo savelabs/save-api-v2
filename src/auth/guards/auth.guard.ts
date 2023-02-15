@@ -17,7 +17,7 @@ export class GqlAuthGuard extends AuthGuard("jwt") {
 
 @Injectable()
 export class JwtAuthGuard extends AuthGuard("jwt") {
-  handleRequest(err, user, info) {
+  handleRequest(err, user) {
     if (err || !user) {
       throw err || new UnauthorizedException()
     }

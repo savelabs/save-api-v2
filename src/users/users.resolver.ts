@@ -4,7 +4,6 @@ import { UseGuards } from "@nestjs/common"
 import { GqlAuthGuard } from "../auth/guards/auth.guard"
 import { CurrentUser } from "../auth/decorators/currentUser"
 import { UsersService } from "./users.service"
-import { VoidScalar } from "src/scalars"
 import { RolesGuard } from "src/auth/guards/roles.guard"
 import { Roles } from "src/auth/decorators/roles"
 
