@@ -21,4 +21,6 @@ FROM base as prod
 
 ENV NODE_ENV production
 
+RUN pnpm i -g @nestjs/cli
+
 CMD ["pnpm", "run", "start:prod"]
