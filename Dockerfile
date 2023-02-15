@@ -24,5 +24,6 @@ ENV PNPM_HOME /home/node/app/node_modules
 
 RUN pnpm i -g @nestjs/cli
 RUN pnpx prisma db push
+RUN pnpm build
 
 CMD ["pnpm", "run", "start:prod"]
