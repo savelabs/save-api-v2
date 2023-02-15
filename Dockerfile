@@ -8,6 +8,7 @@ COPY package.json pnpm-lock.yaml ./
 
 RUN npm install pnpm -g
 RUN pnpm i
+RUN pnpm exec prisma generate
 
 COPY --chown=node:node . .
 
@@ -23,9 +24,8 @@ WORKDIR /home/node/app
 
 ENV NODE_ENV production
 
-RUN pnpm exec prisma generate
 RUN pnpm build
 
-RUN ls
+COPY --chown=node:node . /home/node/app/dist
 
 CMD ["pnpm", "run", "start:prod"]
