@@ -6,7 +6,7 @@ services:
       target: prod
 
   nginx:
-    image: nginx:latest
+    image: nginx
     ports:
       - 80:80
       - 443:443
