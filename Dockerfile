@@ -23,7 +23,6 @@ RUN pnpm i
 
 ENV NODE_ENV production
 
-RUN pnpm exec prisma db push
 RUN pnpm build
 
 CMD ["pnpm", "run", "start:prod"]
