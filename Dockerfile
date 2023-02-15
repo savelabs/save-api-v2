@@ -19,11 +19,11 @@ CMD ["pnpm", "run", "start:dev"]
 
 FROM base as prod
 
-ENV NODE_ENV production
-ENV PNPM_HOME /home/node/app/node_modules
+RUN pnpm i
 
-RUN pnpm i -g @nestjs/cli
-RUN pnpx prisma db push
+ENV NODE_ENV production
+
+RUN pnpm exec prisma db push
 RUN pnpm build
 
 CMD ["pnpm", "run", "start:prod"]
