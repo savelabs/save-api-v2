@@ -1,7 +1,8 @@
 import { Module } from "@nestjs/common"
 import { ConfigModule, ConfigService } from "@nestjs/config"
 import { GraphQLModule } from "@nestjs/graphql"
-import { ApolloDriver, ApolloDriverConfig } from "@nestjs/apollo"
+import {} from "@nestjs/mercurius"
+import { MercuriusDriver, MercuriusDriverConfig } from "@nestjs/mercurius"
 import { ThrottlerModule } from "@nestjs/throttler"
 import config from "../config"
 import * as Joi from "joi"
@@ -46,9 +47,10 @@ import { FilesModule } from "./files/files.module"
         })
       })
     }),
-    GraphQLModule.forRoot<ApolloDriverConfig>({
-      driver: ApolloDriver,
-      autoSchemaFile: true
+    GraphQLModule.forRoot<MercuriusDriverConfig>({
+      driver: MercuriusDriver,
+      autoSchemaFile: true,
+      graphiql: true
     }),
     ThrottlerModule.forRootAsync({
       imports: [ConfigModule],
@@ -60,7 +62,7 @@ import { FilesModule } from "./files/files.module"
     }),
     BullModule.forRoot({
       redis: {
-        host: "localhost",
+        host: "redis",
         port: 6379
       }
     }),

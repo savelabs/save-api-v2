@@ -1,6 +1,21 @@
-version: "3"
+version: "3.9"
 
 services:
+  node:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    ports:
+      - 8000:8000
+    volumes:
+      - .:/home/node/app
+    depends_on:
+      - postgres
+      - redis
+    networks:
+      - api
+
   postgres:
     image: postgres
     environment:
@@ -8,17 +23,21 @@ services:
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: postgres
     ports:
-      - "5432:5432"
+      - 5432:5432
     volumes:
       - ./data/postgres:/var/lib/postgresql/data
     networks:
-      - default
+      - api
 
   redis:
     image: redis
     ports:
-      - "6379:6379"
+      - 6379:6379
     volumes:
       - ./data/redis:/data
     networks:
-      - default
+      - api
+
+networks:
+  api:
+    driver: bridge
