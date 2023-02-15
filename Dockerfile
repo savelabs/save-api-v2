@@ -19,14 +19,12 @@ CMD ["pnpm", "run", "start:dev"]
 
 FROM base as prod
 
-RUN pnpm i
+WORKDIR /home/node/app
 
 ENV NODE_ENV production
 
 RUN pnpm exec prisma generate
 RUN pnpm build
-
-WORKDIR /home/node/app
 
 COPY --chown=node:node dist/ ./
 
