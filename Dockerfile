@@ -22,10 +22,12 @@ FROM base as prod
 
 WORKDIR /home/node/app
 
-ENV NODE_ENV production
-
+RUN pnpm i
+RUN pnpm exec prisma generate
 RUN pnpm build
 
-COPY --chown=node:node . /home/node/app/dist
+ENV NODE_ENV production
+
+COPY --chown=node:node . .
 
 CMD ["pnpm", "run", "start:prod"]
