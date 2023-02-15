@@ -26,6 +26,6 @@ ENV NODE_ENV production
 RUN pnpm exec prisma generate
 RUN pnpm build
 
-COPY --chown=node:node dist/ ./
+COPY --chown=node:node /app/dist ./dist
 
 CMD ["pnpm", "run", "start:prod"]
