@@ -32,6 +32,8 @@ COPY package.json pnpm-lock.yaml ./
 
 RUN pnpm i
 
-COPY --from=base /home/node/app/dist ./dist
+COPY --from=base . .
+
+RUN pnpm build
 
 CMD ["pnpm", "run", "start:prod"]
