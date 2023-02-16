@@ -14,7 +14,7 @@ COPY --chown=node:node . .
 RUN pnpm exec prisma generate
 RUN pnpm build
 
-COPY --chown=node:node . .
+COPY dist ./dist
 
 EXPOSE 8000
 
@@ -31,8 +31,6 @@ WORKDIR /home/node/app
 COPY package.json pnpm-lock.yaml ./
 
 RUN pnpm i
-
-COPY . .
 
 COPY --from=base /home/node/app/dist ./dist
 
