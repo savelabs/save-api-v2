@@ -67,7 +67,7 @@
     "@types/bull": "^3.15.9",
     "@types/cache-manager": "^3.4.3",
     "@types/cache-manager-redis-store": "^2.0.1",
-    "@types/cron": "^1.7.3",
+    "@types/cron": "^2.0.0",
     "@types/graphql-upload": "^8.0.12",
     "@types/jest": "^27.5.2",
     "@types/js-yaml": "^4.0.5",
