@@ -24,8 +24,6 @@ CMD ["pnpm", "run", "start:dev"]
 
 FROM base as prod
 
-ENV NODE_ENV production
-
 WORKDIR /home/node/app
 
 COPY package.json pnpm-lock.yaml ./
