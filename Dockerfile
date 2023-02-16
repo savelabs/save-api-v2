@@ -49,4 +49,4 @@ COPY --chown=node:node --from=build /usr/src/app/dist ./dist
 
 RUN npm i -g pm2
 
-CMD [ "pm2", "start", "dist/src/index.js", "-i", "max" ]
+CMD [ "pm2", "start", "dist/src/main.js", "-i", "max" ]
