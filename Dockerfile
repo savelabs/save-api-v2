@@ -31,6 +31,7 @@ COPY --chown=node:node --from=dev /usr/src/app/node_modules ./node_modules
 
 COPY --chown=node:node . .
 
+RUN pnpm exec prisma generate
 RUN pnpm build
 
 ENV NODE_ENV production
