@@ -1,33 +1,52 @@
-FROM node:16 as base
+#* BUILD FOR LOCAL DEVELOPMENT
 
-RUN mkdir -p /home/node/app/node_modules && chown -R node:node /home/node/app
+FROM node:18 AS dev
+RUN curl -f https://get.pnpm.io/v6.16.js | node - add --global pnpm
 
-WORKDIR /home/node/app
+WORKDIR /usr/src/app
 
-COPY package.json pnpm-lock.yaml ./
+COPY --chown=node:node pnpm-lock.yaml ./
 
-RUN npm install pnpm -g
-RUN pnpm i
-RUN pnpm exec prisma generate
+RUN pnpm fetch --prod
 
 COPY --chown=node:node . .
+RUN pnpm install
+
+USER node
 
 EXPOSE 8000
 
-FROM base as dev
+CMD ["pnpm", "start:dev"]
 
-CMD ["pnpm", "run", "start:dev"]
+#* BUILD FOR PRODUCTION
 
-FROM base as prod
+FROM node:18 AS build
+RUN curl -f https://get.pnpm.io/v6.16.js | node - add --global pnpm
 
-WORKDIR /home/node/app
+WORKDIR /usr/src/app
 
-RUN pnpm i
+COPY --chown=node:node pnpm-lock.yaml ./
+
+COPY --chown=node:node --from=dev /usr/src/app/node_modules ./node_modules
+
+COPY --chown=node:node . .
+
 RUN pnpm exec prisma generate
 RUN pnpm build
 
 ENV NODE_ENV production
 
-COPY --chown=node:node . .
+RUN pnpm install --prod
 
-CMD ["pnpm", "run", "start:prod"]
+USER node
+
+#* PRODUCTION
+
+FROM node:18 AS prod
+
+COPY --chown=node:node --from=build /usr/src/app/node_modules ./node_modules
+COPY --chown=node:node --from=build /usr/src/app/dist ./dist
+
+RUN npm i -g pm2
+
+CMD [ "pm2-runtime", "dist/src/main.js", "-i", "max" ]
