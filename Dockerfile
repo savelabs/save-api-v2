@@ -4,17 +4,14 @@ RUN mkdir -p /home/node/app/node_modules && chown -R node:node /home/node/app
 
 WORKDIR /home/node/app
 
-COPY package.json pnpm-lock.yaml ./
+COPY package.json pnpm-lock.yaml prisma/ ./
 
 RUN npm install pnpm -g
 RUN pnpm i
 
-COPY . .
-
 RUN pnpm exec prisma generate
-RUN pnpm build
 
-COPY . .
+COPY --chown=node:node . .
 
 EXPOSE 8000
 
@@ -33,5 +30,7 @@ RUN pnpm i
 COPY --from=base . .
 
 RUN pnpm build
+
+COPY . .
 
 CMD ["pnpm", "run", "start:prod"]
