@@ -8,10 +8,11 @@ COPY package.json pnpm-lock.yaml ./
 
 RUN npm install pnpm -g
 RUN pnpm i
-RUN pnpm exec prisma generate
-RUN pnpm build
 
 COPY --chown=node:node . .
+
+RUN pnpm exec prisma generate
+RUN pnpm build
 
 EXPOSE 8000
 
