@@ -1,6 +1,6 @@
 #* BUILD FOR LOCAL DEVELOPMENT
 
-FROM node:16 As dev
+FROM node:18 AS dev
 RUN curl -f https://get.pnpm.io/v6.16.js | node - add --global pnpm
 
 WORKDIR /usr/src/app
@@ -20,14 +20,14 @@ CMD ["pnpm", "start:dev"]
 
 #* BUILD FOR PRODUCTION
 
-FROM node:16 As build
+FROM node:18 AS build
 RUN curl -f https://get.pnpm.io/v6.16.js | node - add --global pnpm
 
 WORKDIR /usr/src/app
 
 COPY --chown=node:node pnpm-lock.yaml ./
 
-COPY --chown=node:node --from=development /usr/src/app/node_modules ./node_modules
+COPY --chown=node:node --from=dev /usr/src/app/node_modules ./node_modules
 
 COPY --chown=node:node . .
 
@@ -41,7 +41,7 @@ USER node
 
 #* PRODUCTION
 
-FROM node:16 As prod
+FROM node:18 AS prod
 
 COPY --chown=node:node --from=build /usr/src/app/node_modules ./node_modules
 COPY --chown=node:node --from=build /usr/src/app/dist ./dist
