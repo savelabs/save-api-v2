@@ -14,7 +14,7 @@ COPY --chown=node:node . .
 RUN pnpm exec prisma generate
 RUN pnpm build
 
-COPY dist ./dist
+COPY . .
 
 EXPOSE 8000
 
