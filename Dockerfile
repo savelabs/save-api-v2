@@ -25,7 +25,7 @@ ENV NODE_ENV production
 
 WORKDIR /home/node/app
 
-COPY package.json pnpm-lock.yml ./
+COPY package.json pnpm-lock.yaml ./
 
 RUN pnpm i
 
