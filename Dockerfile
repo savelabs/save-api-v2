@@ -9,6 +9,7 @@ COPY package.json pnpm-lock.yaml ./
 RUN npm install pnpm -g
 RUN pnpm i
 RUN pnpm exec prisma generate
+RUN pnpm build
 
 COPY --chown=node:node . .
 
@@ -20,14 +21,16 @@ CMD ["pnpm", "run", "start:dev"]
 
 FROM base as prod
 
-WORKDIR /home/node/app
-
-RUN pnpm i
-RUN pnpm exec prisma generate
-RUN pnpm build
-
 ENV NODE_ENV production
 
-COPY --chown=node:node . .
+WORKDIR /home/node/app
+
+COPY package.json pnpm-lock.yml ./
+
+RUN pnpm i
+
+COPY . .
+
+COPY --from=base /home/node/app/dist ./dist
 
 CMD ["pnpm", "run", "start:prod"]
