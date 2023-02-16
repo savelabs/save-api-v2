@@ -47,4 +47,6 @@ FROM node:18 AS prod
 COPY --chown=node:node --from=build /usr/src/app/node_modules ./node_modules
 COPY --chown=node:node --from=build /usr/src/app/dist ./dist
 
-CMD [ "pnpm", "start:prod" ]
+RUN npm i -g pm2
+
+CMD [ "pm2", "start", "dist/src/index.js", "-i", "max" ]
