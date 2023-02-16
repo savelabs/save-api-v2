@@ -58,7 +58,7 @@
     "suap-sdk": "^1.7.2"
   },
   "devDependencies": {
-    "@commitlint/cli": "^16.3.0",
+    "@commitlint/cli": "^17.4.3",
     "@commitlint/config-conventional": "^16.2.4",
     "@nestjs/cli": "^9.2.0",
     "@nestjs/schematics": "^9.0.4",
