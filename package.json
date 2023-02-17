@@ -42,7 +42,7 @@
     "expo-server-sdk": "^3.7.0",
     "graphql": "^16.6.0",
     "graphql-scalars": "^1.20.1",
-    "graphql-upload": "^13.0.0",
+    "graphql-upload": "^16.0.2",
     "joi": "^17.7.1",
     "js-yaml": "^4.1.0",
     "mercurius": "^12.0.1",
