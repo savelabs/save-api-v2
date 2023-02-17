@@ -36,7 +36,7 @@
     "@nestjs/throttler": "^4.0.0",
     "@prisma/client": "^4.10.1",
     "bull": "^4.10.4",
-    "cache-manager": "^3.6.3",
+    "cache-manager": "^5.1.6",
     "cache-manager-redis-store": "^3.0.1",
     "cuid": "^2.1.8",
     "expo-server-sdk": "^3.7.0",
